@@ -6,6 +6,7 @@ namespace EugineFitness.CMD
 {
     class Program
     {
+        // Hello, GitHub
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, new user! It's EugeneFitness app.");
