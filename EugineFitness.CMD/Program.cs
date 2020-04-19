@@ -1,17 +1,21 @@
 ﻿using EugineFitness.BL.Controller;
 using EugineFitness.BL.Model;
 using System;
+using System.Globalization;
+using System.Resources;
 
 namespace EugineFitness.CMD
 {
     class Program
     {
-        // Hello, GitHub
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, new user! It's EugeneFitness app.");
+            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            var resourceManager = new ResourceManager("EugineFitness.CMD.Languages.Messages", typeof(Program).Assembly);
 
-            Console.WriteLine("Enter your Username");
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+
+            Console.WriteLine(resourceManager.GetString("EnterUsername", culture));
             var name = Console.ReadLine();
 
 
