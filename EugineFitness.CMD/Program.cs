@@ -10,7 +10,7 @@ namespace EugineFitness.CMD
     {
         static void Main(string[] args)
         {
-            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            var culture = CultureInfo.CreateSpecificCulture("en-en");
             var resourceManager = new ResourceManager("EugineFitness.CMD.Languages.Messages", typeof(Program).Assembly);
 
             Console.WriteLine(resourceManager.GetString("Hello", culture));
@@ -21,11 +21,12 @@ namespace EugineFitness.CMD
 
             var userController = new UserController(name);
             var mealController = new MealController(userController.CurrentUser);
+            var exerciseController = new ExerciseController(userController.CurrentUser);
             if (userController.IsNewUser)
             {
                 Console.WriteLine("Enter your Gender.");
                 var gender = Console.ReadLine();
-                var birthDate = ParseDateTime();
+                var birthDate = ParseDateTime("birthday date");
                 var weight = ParseDouble("weight");
                 var height = ParseDouble("height");
 
@@ -35,22 +36,45 @@ namespace EugineFitness.CMD
 
             Console.WriteLine(userController.CurrentUser);
 
-            Console.WriteLine("What do you want?");
-            Console.WriteLine("E - enter a meal");
-            var key = Console.ReadKey();
-            Console.WriteLine();
-            if (key.Key == ConsoleKey.E)
+            while (true)
             {
-                var foods = EnterMeal();
-                mealController.Add(foods.Food, foods.Weight);
+                Console.WriteLine("What do you want?");
+                Console.WriteLine("E - enter a meal");
+                Console.WriteLine("A - enter an activity");
+                Console.WriteLine("Q - exit");
+                var key = Console.ReadKey();
+                Console.WriteLine();
 
-                foreach(var item in mealController.Meal.Foods)
+                switch (key.Key)
                 {
-                    Console.WriteLine($"\t{item.Key} - {item.Value}");
-                }
-            }
+                    case ConsoleKey.E:
+                        var foods = EnterMeal();
+                        mealController.Add(foods.Food, foods.Weight);
 
-            Console.ReadLine();
+                        foreach (var item in mealController.Meal.Foods)
+                        {
+                            Console.WriteLine($"\t{item.Key} - {item.Value}");
+                        }
+                        break;
+
+                    case ConsoleKey.A:
+                        var exercises = EnterExercise();
+                        exerciseController.Add(exercises.activity, exercises.begin, exercises.end);
+
+                        foreach (var item in exerciseController.Exercises)
+                        {
+                            Console.WriteLine($"\t{item.Activity} from {item.Start.ToShortTimeString()} till {item.End.ToShortTimeString()}");
+                        }
+                        break;
+
+                    case ConsoleKey.Q:
+                        Environment.Exit(0);
+                        break;
+
+                }
+
+                Console.ReadLine();
+            }
         }
 
         private static (Food Food, double Weight) EnterMeal()
@@ -70,12 +94,26 @@ namespace EugineFitness.CMD
             return (Food: product, Weight: weight);
         }
 
-        private static DateTime ParseDateTime()
+        private static (DateTime begin, DateTime end, Activity activity) EnterExercise()
+        {
+            Console.WriteLine("Enter exercise name.");
+            var name = Console.ReadLine();
+
+            var energy = ParseDouble("energy loss per min"); 
+
+            var begin = ParseDateTime("start time");
+            var end = ParseDateTime("end time");
+
+            var activity = new Activity(name, energy);
+            return (begin, end, activity);
+        }
+
+        private static DateTime ParseDateTime(string value)
         {
             DateTime birthDate;
             while (true)
             {
-                Console.WriteLine("Enter your birthday date (dd.mm.yyyy).");
+                Console.WriteLine($"Enter your {value} (dd.mm.yyyy).");
                 if (DateTime.TryParse(Console.ReadLine(), out DateTime birthdate))
                 {
                     birthDate = birthdate;
