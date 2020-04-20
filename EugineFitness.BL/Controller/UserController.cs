@@ -12,7 +12,6 @@ namespace EugineFitness.BL.Controller
     /// </summary>
     public class UserController : ControllerBase
     {
-        private const string USERS_FILE_NAME = "users.dat";
         /// <summary>
         /// User.
         /// </summary>
@@ -42,7 +41,6 @@ namespace EugineFitness.BL.Controller
                 CurrentUser = new User(userName);
                 Users.Add(CurrentUser);
                 IsNewUser = true;
-                Save();
             }
         }
 
@@ -52,7 +50,7 @@ namespace EugineFitness.BL.Controller
         /// <returns> User. </returns>
         private List<User> GetUsersData()
         {
-            return Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
+            return Load<User>() ?? new List<User>();
         }
 
         public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
@@ -70,7 +68,7 @@ namespace EugineFitness.BL.Controller
         /// </summary>
         public void Save()
         {
-            Save(USERS_FILE_NAME, Users);
+            Save(Users);
         }
     }
 }

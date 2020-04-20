@@ -9,13 +9,8 @@ namespace EugineFitness.BL.Controller
 {
     public class MealController : ControllerBase
     {
-        private const string FOODS_FILE_NAME = "foods.dat";
-        private const string MEALS_FILE_NAME = "meals.dat";
-
         private readonly User user;
-
         public List<Food> Foods { get; }
-
         public Meal Meal { get; }
 
         public MealController(User user)
@@ -48,7 +43,7 @@ namespace EugineFitness.BL.Controller
         /// <returns></returns>
         private Meal GetMeal()
         {
-            return Load<Meal>(MEALS_FILE_NAME) ?? new Meal(user);
+            return Load<Meal>().FirstOrDefault() ?? new Meal(user);
         }
 
         /// <summary>
@@ -57,13 +52,13 @@ namespace EugineFitness.BL.Controller
         /// <returns></returns>
         private List<Food> GetAllFoods()
         {
-            return Load<List<Food>>(FOODS_FILE_NAME) ?? new List<Food>();
+            return Load<Food>() ?? new List<Food>();
         }
 
         private void Save()
         {
-            Save(FOODS_FILE_NAME, Foods);
-            Save(MEALS_FILE_NAME, Meal);
+            Save(Foods);
+            Save(new List<Meal>() { Meal });
         }
     }
 }

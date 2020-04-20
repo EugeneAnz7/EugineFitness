@@ -1,34 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EugineFitness.BL.Model
 {
     [Serializable]
     public class Food
     {
+        public int Id { get; set; }
         /// <summary>
         /// Name.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Proteins.
         /// </summary>
-        public double Proteins { get; }
+        public double Proteins { get; set; }
 
         /// <summary>
         /// Fats.
         /// </summary>
-        public double Fats { get; }
+        public double Fats { get; set; }
 
         /// <summary>
         /// Carbohydrates.
         /// </summary>
-        public double Carbohydrates { get; }
+        public double Carbohydrates { get; set; }
 
         /// <summary>
         /// Calories per 100g.
         /// </summary>
-        public double Calories { get; }
+        public double Calories { get; set; }
+
+        public ICollection<Meal> Meals { get; set; }
+
+        public Food() { }
 
         public Food(string name, double calories, double proteins, double fats, double carbohydrates)
         {

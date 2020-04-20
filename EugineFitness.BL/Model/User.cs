@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EugineFitness.BL.Model
 {
@@ -9,20 +10,19 @@ namespace EugineFitness.BL.Model
     public class User
     {
         #region Properties
+        public int Id { get; set; }
         /// <summary>
         /// Name
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
-        /// <summary>
-        /// Gender
-        /// </summary>
-        public Gender Gender { get; set; }
+        public int? GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
 
         /// <summary>
         /// Birthday date
         /// </summary>
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// Weight
@@ -34,8 +34,13 @@ namespace EugineFitness.BL.Model
         /// </summary>
         public double Height { get; set; }
 
+        public virtual ICollection<Meal> Meals { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
+
         public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }  // Incorrect.
         #endregion
+
+        public User() { }
         
         /// <summary>
         /// Create new user

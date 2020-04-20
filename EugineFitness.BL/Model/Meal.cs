@@ -10,20 +10,25 @@ namespace EugineFitness.BL.Model
     [Serializable]
     public class Meal
     {
+        public int Id { get; set; }
         /// <summary>
         /// Time of meal.
         /// </summary>
-        public DateTime MealTime { get; }
+        public DateTime MealTime { get; set; }
 
         /// <summary>
         /// Foods in meal in grams.
         /// </summary>
-        public Dictionary<Food, double> Foods { get; }
+        public Dictionary<Food, double> Foods { get; set; }
+
+        public int UserId { get; set; }
 
         /// <summary>
         /// User that had a meal.
         /// </summary>
-        public User User { get; }
+        public virtual User User { get; set; }
+
+        public Meal() { }
 
         public Meal(User user)
         {
