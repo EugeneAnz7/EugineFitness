@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EugineFitness.CMD", "Eugine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EugineFitness.BLTests", "EugineFitness.BLTests\EugineFitness.BLTests.csproj", "{9C0930C2-974E-4C80-ADC4-67D946A0AE60}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFitness", "SetupFitness\SetupFitness.vdproj", "{A34B0097-C8D5-46A8-B6E3-7FBB8484DA57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{9C0930C2-974E-4C80-ADC4-67D946A0AE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C0930C2-974E-4C80-ADC4-67D946A0AE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C0930C2-974E-4C80-ADC4-67D946A0AE60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34B0097-C8D5-46A8-B6E3-7FBB8484DA57}.Debug|Any CPU.ActiveCfg = Debug
+		{A34B0097-C8D5-46A8-B6E3-7FBB8484DA57}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
