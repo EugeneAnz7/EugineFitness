@@ -17,8 +17,6 @@ namespace EugineFitness.BL.Model
 
         public Exercise(DateTime start, DateTime end, Activity activity, User user)
         {
-            // TODO: Check
-
             Start = start;
             End = end;
             Activity = activity;

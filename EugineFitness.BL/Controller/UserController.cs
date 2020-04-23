@@ -1,9 +1,7 @@
 ﻿using EugineFitness.BL.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EugineFitness.BL.Controller
 {
@@ -22,7 +20,7 @@ namespace EugineFitness.BL.Controller
         public bool IsNewUser { get; } = false;
 
         /// <summary>
-        /// Create new controller
+        /// Create new controller.
         /// </summary>
         /// <param name="user"> User. </param>
         public UserController(string userName)
@@ -53,9 +51,19 @@ namespace EugineFitness.BL.Controller
             return Load<User>() ?? new List<User>();
         }
 
+        /// <summary>
+        /// Set data of new user.
+        /// </summary>
+        /// <param name="genderName"></param>
+        /// <param name="birthDate"></param>
+        /// <param name="weight"></param>
+        /// <param name="height"></param>
         public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
         {
-            // Check
+            if (string.IsNullOrWhiteSpace(genderName))
+            {
+                throw new ArgumentNullException("Gender can't be empty or null", nameof(genderName));
+            }
             CurrentUser.Gender = new Gender(genderName);
             CurrentUser.BirthDate = birthDate;
             CurrentUser.Weight = weight;

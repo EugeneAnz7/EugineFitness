@@ -3,6 +3,9 @@ using System.Data.Entity;
 
 namespace EugineFitness.BL.Controller
 {
+    /// <summary>
+    /// Context for DataBase
+    /// </summary>
     class FitnessContext : DbContext
     {
         public FitnessContext() : base("DbConnection") { }

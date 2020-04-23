@@ -38,8 +38,6 @@ namespace EugineFitness.BL.Model
 
         public Food(string name, double calories, double proteins, double fats, double carbohydrates)
         {
-            // TODO: Check
-
             Name = name;
             Calories = calories / 100.0;
             Proteins = proteins / 100.0;

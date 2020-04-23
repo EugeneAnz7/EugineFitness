@@ -14,7 +14,10 @@ namespace EugineFitness.BL.Model
 
         public Activity(string name, double caloriesPerMinute)
         {
-            // TODO: Check
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Activity name can't be empty or null.", nameof(name));
+            }
             Name = name;
             CaloriesPerMinute = caloriesPerMinute;
         }

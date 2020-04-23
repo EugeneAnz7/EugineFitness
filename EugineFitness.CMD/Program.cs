@@ -113,7 +113,7 @@ namespace EugineFitness.CMD
             DateTime birthDate;
             while (true)
             {
-                Console.WriteLine($"Enter your {value} (dd.mm.yyyy).");
+                Console.WriteLine($"Enter your {value}.");
                 if (DateTime.TryParse(Console.ReadLine(), out DateTime birthdate))
                 {
                     birthDate = birthdate;

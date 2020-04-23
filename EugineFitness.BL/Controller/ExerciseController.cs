@@ -11,6 +11,10 @@ namespace EugineFitness.BL.Controller
         public List<Exercise> Exercises { get; }
         public List<Activity> Activities { get; }
 
+        /// <summary>
+        /// Create new exercise controller for this user.
+        /// </summary>
+        /// <param name="user"></param>
         public ExerciseController(User user)
         {
             this.user = user ?? throw new ArgumentNullException("User can't be empty or null", nameof(user));
